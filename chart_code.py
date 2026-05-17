@@ -36,6 +36,7 @@ def generate_chart_code(instruction: str, model: str, out_path_v1: str) -> str:
     7. Add all necessary import python statements
     8. CRITICAL: 'date' is datetime64 — never use string concatenation on it.
        Filter by year/quarter using the 'year' and 'quarter' integer columns.
+    9. Don't create a dataframe df with example data, strictly assume the data is already loaded in df and ready to use.
     
     Return ONLY the code wrapped in <execute_python> tags.
     """

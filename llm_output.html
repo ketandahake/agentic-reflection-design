@@ -51,24 +51,23 @@
     </head>
 <body>
 <div class="pretty-card"><div class="pretty-title">LLM output with first draft code (V1)</div><pre><code>&lt;execute_python&gt;
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
 
-# Assume df is already loaded from &#x27;coffee_sales.csv&#x27;
-# For demonstration purposes, let&#x27;s create a dummy DataFrame
-data = {
-    &#x27;date&#x27;: pd.to_datetime([&#x27;2024-01-15&#x27;, &#x27;2024-02-20&#x27;, &#x27;2024-03-10&#x27;, &#x27;2025-01-25&#x27;, &#x27;2025-02-15&#x27;, &#x27;2025-03-05&#x27;,
-                           &#x27;2024-04-01&#x27;, &#x27;2024-05-10&#x27;, &#x27;2024-06-20&#x27;, &#x27;2025-04-15&#x27;, &#x27;2025-05-05&#x27;, &#x27;2025-06-10&#x27;]),
-    &#x27;time&#x27;: [&#x27;09:00&#x27;, &#x27;10:30&#x27;, &#x27;11:00&#x27;, &#x27;09:15&#x27;, &#x27;10:00&#x27;, &#x27;11:30&#x27;, &#x27;14:00&#x27;, &#x27;15:30&#x27;, &#x27;16:00&#x27;, &#x27;14:30&#x27;, &#x27;15:00&#x27;, &#x27;16:30&#x27;],
-    &#x27;cash_type&#x27;: [&#x27;card&#x27;, &#x27;cash&#x27;, &#x27;card&#x27;, &#x27;cash&#x27;, &#x27;card&#x27;, &#x27;cash&#x27;, &#x27;card&#x27;, &#x27;cash&#x27;, &#x27;card&#x27;, &#x27;cash&#x27;, &#x27;card&#x27;, &#x27;cash&#x27;],
-    &#x27;card&#x27;: [&#x27;Visa&#x27;, &#x27;Mastercard&#x27;, &#x27;Visa&#x27;, &#x27;Amex&#x27;, &#x27;Visa&#x27;, &#x27;Mastercard&#x27;, &#x27;Visa&#x27;, &#x27;Amex&#x27;, &#x27;Visa&#x27;, &#x27;Mastercard&#x27;, &#x27;Visa&#x27;, &#x27;Amex&#x27;],
-    &#x27;price&#x27;: [4.5, 3.0, 5.0, 4.0, 4.5, 3.5, 5.5, 4.0, 5.0, 4.5, 5.0, 3.5],
-    &#x27;coffee_name&#x27;: [&#x27;Latte&#x27;, &#x27;Espresso&#x27;, &#x27;Cappuccino&#x27;, &#x27;Latte&#x27;, &#x27;Espresso&#x27;, &#x27;Cappuccino&#x27;, &#x27;Latte&#x27;, &#x27;Espresso&#x27;, &#x27;Cappuccino&#x27;, &#x27;Latte&#x27;, &#x27;Espresso&#x27;, &#x27;Cappuccino&#x27;],
-    &#x27;quarter&#x27;: [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2],
-    &#x27;month&#x27;: [1, 2, 3, 1, 2, 3, 4, 5, 6, 4, 5, 6],
-    &#x27;year&#x27;: [2024, 2024, 2024, 2025, 2025, 2025, 2024, 2024, 2024, 2025, 2025, 2025]
-}
-df = pd.DataFrame(data)
+# Assume df is already loaded and contains the specified columns.
+# Example of how df might look (DO NOT INCLUDE IN FINAL OUTPUT):
+# data = {
+#     &#x27;date&#x27;: pd.to_datetime([&#x27;2024-01-15&#x27;, &#x27;2024-02-20&#x27;, &#x27;2025-01-10&#x27;, &#x27;2025-03-05&#x27;, &#x27;2024-04-01&#x27;]),
+#     &#x27;time&#x27;: [&#x27;10:00&#x27;, &#x27;11:30&#x27;, &#x27;09:00&#x27;, &#x27;14:00&#x27;, &#x27;15:00&#x27;],
+#     &#x27;cash_type&#x27;: [&#x27;card&#x27;, &#x27;cash&#x27;, &#x27;card&#x27;, &#x27;cash&#x27;, &#x27;card&#x27;],
+#     &#x27;card&#x27;: [&#x27;Visa&#x27;, &#x27;Mastercard&#x27;, &#x27;Visa&#x27;, &#x27;Amex&#x27;, &#x27;Visa&#x27;],
+#     &#x27;price&#x27;: [4.5, 3.0, 5.0, 3.5, 4.0],
+#     &#x27;coffee_name&#x27;: [&#x27;Latte&#x27;, &#x27;Espresso&#x27;, &#x27;Cappuccino&#x27;, &#x27;Latte&#x27;, &#x27;Americano&#x27;],
+#     &#x27;quarter&#x27;: [1, 1, 1, 1, 2],
+#     &#x27;month&#x27;: [1, 2, 1, 3, 4],
+#     &#x27;year&#x27;: [2024, 2024, 2025, 2025, 2024]
+# }
+# df = pd.DataFrame(data)
 
 # Filter for Q1 sales in 2024 and 2025
 q1_2024_sales = df[(df[&#x27;year&#x27;] == 2024) &amp; (df[&#x27;quarter&#x27;] == 1)]
@@ -78,27 +77,34 @@ q1_2025_sales = df[(df[&#x27;year&#x27;] == 2025) &amp; (df[&#x27;quarter&#x27;]
 q1_2024_summary = q1_2024_sales.groupby(&#x27;coffee_name&#x27;)[&#x27;price&#x27;].sum()
 q1_2025_summary = q1_2025_sales.groupby(&#x27;coffee_name&#x27;)[&#x27;price&#x27;].sum()
 
-# Combine the data for plotting
-plot_data = pd.DataFrame({
-    &#x27;2024&#x27;: q1_2024_summary,
-    &#x27;2025&#x27;: q1_2025_summary
-})
+# Combine the summaries to ensure all coffee names are present in both years
+all_coffee_names = pd.Index(q1_2024_summary.index.union(q1_2025_summary.index))
+q1_2024_summary = q1_2024_summary.reindex(all_coffee_names, fill_value=0)
+q1_2025_summary = q1_2025_summary.reindex(all_coffee_names, fill_value=0)
 
-# Plotting
-fig, ax = plt.subplots(figsize=(10, 6))
+# Create the plot
+fig, ax = plt.subplots(figsize=(12, 7))
 
-plot_data.plot(kind=&#x27;bar&#x27;, ax=ax, width=0.8)
+bar_width = 0.35
+x = range(len(all_coffee_names))
 
-ax.set_title(&#x27;Q1 Coffee Sales Comparison: 2024 vs 2025&#x27;)
+rects1 = ax.bar([i - bar_width/2 for i in x], q1_2024_summary.values, bar_width, label=&#x27;2024 Q1&#x27;)
+rects2 = ax.bar([i + bar_width/2 for i in x], q1_2025_summary.values, bar_width, label=&#x27;2025 Q1&#x27;)
+
+# Add labels, title, and legend
 ax.set_xlabel(&#x27;Coffee Name&#x27;)
 ax.set_ylabel(&#x27;Total Sales Price&#x27;)
-ax.legend(title=&#x27;Year&#x27;)
-ax.grid(axis=&#x27;y&#x27;, linestyle=&#x27;--&#x27;, alpha=0.7)
-plt.xticks(rotation=45, ha=&#x27;right&#x27;)
-plt.tight_layout()
+ax.set_title(&#x27;Q1 Coffee Sales Comparison: 2024 vs 2025&#x27;)
+ax.set_xticks(x)
+ax.set_xticklabels(all_coffee_names, rotation=45, ha=&#x27;right&#x27;)
+ax.legend()
 
+# Save the figure
+plt.tight_layout()
 plt.savefig(&#x27;drink_sales_v1.png&#x27;, dpi=300)
-plt.close()
+
+# Close all plots
+plt.close(&#x27;all&#x27;)
 &lt;/execute_python&gt;</code></pre></div>
 </body>
 </html>

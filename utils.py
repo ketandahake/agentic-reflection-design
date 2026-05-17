@@ -1,24 +1,16 @@
 # === Standard Library ===
+import mimetypes
 import os
 import re
-import json
-import base64
-import mimetypes
-from pathlib import Path
-import io
 
 # === Third-Party ===
 import pandas as pd
-import matplotlib.pyplot as plt
-from PIL import Image
 from dotenv import load_dotenv
-from html import escape
-
+from langchain_anthropic import ChatAnthropic
+from langchain_core.messages import HumanMessage
+from langchain_google_genai import ChatGoogleGenerativeAI
 # === LangChain Imports ===
 from langchain_openai import ChatOpenAI
-from langchain_anthropic import ChatAnthropic
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 
 # === Env & Clients ===
 load_dotenv()
