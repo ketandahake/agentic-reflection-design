@@ -1,0 +1,9 @@
+pandas
+dotenv
+langchain
+pillow
+ipython
+langchain-openai
+langchain-google-genai
+langchain-anthropic
+matplotlib
